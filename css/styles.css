@@ -1,0 +1,29 @@
+.gradient-bg {
+    background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+}
+.passenger-gradient {
+    background: linear-gradient(135deg, #1a2a6c, #0072ff);
+}
+.driver-gradient {
+    background: linear-gradient(135deg, #b21f1f, #ff416c);
+}
+.shadow-light {
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+.animate-bounce-slow {
+    animation: bounce-slow 3s infinite;
+}
+@keyframes bounce-slow {
+    0%, 100% {transform: translateY(0);}
+    50% {transform: translateY(-10px);}
+}
+.slide-in {
+    animation: slideIn 0.5s ease-out;
+}
+@keyframes slideIn {
+    from {transform: translateY(20px); opacity: 0;}
+    to {transform: translateY(0); opacity: 1;}
+}
+.input-effect:focus {
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+}
