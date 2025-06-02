@@ -1,3 +1,14 @@
+# Pasta principal
+$projectPath = "E:\mydriver"
+
+# Cria a pasta principal se não existir
+New-Item -ItemType Directory -Path $projectPath -Force | Out-Null
+Set-Location $projectPath
+
+Write-Host "📁 Pasta criada em: $projectPath" -ForegroundColor Green
+
+# === Conteúdo HTML completo ===
+$htmlContent = @'
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -12,14 +23,12 @@
     <!-- Header/Navigation -->
     <header class="gradient-bg text-white py-4 px-6 flex justify-between items-center shadow-lg sticky top-0 z-50">
         <div class="flex items-center">
-            <div class="bg-white rounded-full p-1 mr-3">
-                <div class="bg-gray-200 border-2 border-dashed rounded-xl w-12 h-12" />
-            </div>
+            <img src="https://via.placeholder.com/50x50?text=MD" alt="Logo MyDriver" class="rounded-full mr-3">
             <h1 class="text-2xl font-bold">My<span class="text-yellow-300">Driver</span></h1>
         </div>
         <nav class="hidden md:block">
             <ul class="flex space-x-6">
-                <li><a href="#" class="hover:text-yellow-300 transition">In�cio</a></li>
+                <li><a href="#" class="hover:text-yellow-300 transition">Início</a></li> 
                 <li><a href="#funcionalidades" class="hover:text-yellow-300 transition">Funcionalidades</a></li>
                 <li><a href="#como-funciona" class="hover:text-yellow-300 transition">Como funciona</a></li>
                 <li><a href="#" class="hover:text-yellow-300 transition">Contato</a></li>
@@ -29,13 +38,24 @@
             <i class="fas fa-bars"></i>
         </button>
     </header>
+
     <main>
         <!-- Hero Section -->
         <section class="gradient-bg text-white py-16">
             <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
                 <div class="md:w-1/2 mb-10 md:mb-0 slide-in">
                     <h1 class="text-4xl md:text-5xl font-bold mb-4">Solicite uma viagem em <span class="text-yellow-300">instantes</span></h1>
-                    <p class="text-lg mb-8">Seja passageiro ou motorista, o MyDriver conecta voc� � mobilidade do futuro.</p>
+                    <p class="text-lg mb-8">Seja passageiro ou motorista, o MyDriver conecta você à mobilidade do futuro.</p>
+
+                    <!-- Campos de Origem e Destino -->
+                    <div class="bg-white p-6 rounded-xl shadow-md text-gray-800 mb-6">
+                        <label class="block text-sm font-semibold mb-2" for="origin">Origem:</label>
+                        <input type="text" id="origin" placeholder="Rua das Flores, 123" class="w-full border rounded-lg px-4 py-2 mb-4 input-effect">
+
+                        <label class="block text-sm font-semibold mb-2" for="destination">Destino:</label>
+                        <input type="text" id="destination" placeholder="Shopping Central" class="w-full border rounded-lg px-4 py-2 input-effect">
+                    </div>
+
                     <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
                         <button onclick="showPassengerSignup()" class="passenger-gradient hover:opacity-90 text-white font-bold py-3 px-6 rounded-full transition duration-300 shadow-light">
                             <i class="fas fa-user mr-2"></i>Quero ser passageiro
@@ -45,70 +65,23 @@
                         </button>
                     </div>
                 </div>
+
                 <div class="md:w-1/2 flex justify-center slide-in">
-                    <div class="relative max-w-md">
-                        <div class="bg-white p-5 rounded-2xl shadow-xl border-8 border-gray-100">
-                            <div class="flex justify-between mb-4">
-                                <div class="w-16 h-1 bg-blue-500 rounded"></div>
-                                <div class="w-16 h-1 bg-gray-300 rounded"></div>
-                                <div class="w-16 h-1 bg-gray-300 rounded"></div>
-                            </div>
-                            <div class="flex items-center mb-4">
-                                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                                    <i class="fas fa-map-marker-alt text-blue-500 text-xl"></i>
-                                </div>
-                                <div class="ml-3">
-                                    <p class="text-sm text-gray-500">Origem</p>
-                                    <p class="font-medium">Rua das Flores, 123</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center mb-6">
-                                <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center">
-                                    <i class="fas fa-flag text-purple-500 text-xl"></i>
-                                </div>
-                                <div class="ml-3">
-                                    <p class="text-sm text-gray-500">Destino</p>
-                                    <p class="font-medium">Shopping Central</p>
-                                </div>
-                            </div>
-                            <div class="bg-yellow-100 rounded-lg p-4 mb-6">
-                                <div class="flex items-center mb-3">
-                                    <div class="w-10 h-10 rounded-full overflow-hidden">
-                                        <div class="bg-gray-200 border-2 border-dashed rounded-xl w-10 h-10" />
-                                    </div>
-                                    <div class="ml-3">
-                                        <p class="font-medium">Carlos Silva</p>
-                                        <div class="flex items-center">
-                                            <i class="fas fa-star text-yellow-400"></i>
-                                            <p class="text-sm ml-1">4.9</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="flex justify-between">
-                                    <div>
-                                        <p class="text-sm text-gray-600">Modelo do carro</p>
-                                        <p class="font-medium">Toyota Corolla Prata</p>
-                                    </div>
-                                    <div>
-                                        <p class="text-sm text-gray-600">Placa</p>
-                                        <p class="font-medium">ABC-1234</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="flex space-x-4">
-                                <button class="flex-1 bg-gray-100 py-3 rounded-lg text-gray-800 font-medium">Cancelar</button>
-                                <button class="flex-1 bg-green-500 py-3 rounded-lg text-white font-medium">Confirmar</button>
-                            </div>
-                        </div>
-                        <div class="absolute -bottom-6 -right-6 animate-bounce-slow">
-                            <div class="w-16 h-16 bg-yellow-400 rounded-full flex items-center justify-center">
-                                <i class="fas fa-car text-white text-2xl"></i>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- Mapa com posição do motorista e passageiro -->
+                    <iframe 
+                        width="100%" 
+                        height="300" 
+                        frameborder="0" 
+                        scrolling="no" 
+                        marginheight="0" 
+                        marginwidth="0"
+                        src="https://maps.google.com/maps?q=São Paulo&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                        aria-label="Mapa mostrando localização atual">
+                    </iframe>
                 </div>
             </div>
         </section>
+
         <!-- Features Section -->
         <section id="funcionalidades" class="py-16 bg-white">
             <div class="container mx-auto px-4">
@@ -119,26 +92,27 @@
                             <i class="fas fa-bolt text-blue-500 text-2xl"></i>
                         </div>
                         <h3 class="text-xl font-bold mb-3">Rapidez</h3>
-                        <p class="text-gray-600">Motoristas dispon�veis em menos de 5 minutos na maioria das regi�es. Viaje quando quiser, sem espera.</p>
+                        <p class="text-gray-600">Motoristas disponíveis em menos de 5 minutos na maioria das regiões. Viaje quando quiser, sem espera.</p>
                     </div>
                     <div class="bg-gray-50 p-8 rounded-xl shadow-light transition-transform hover:scale-105">
                         <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-6">
                             <i class="fas fa-shield-alt text-green-500 text-2xl"></i>
                         </div>
-                        <h3 class="text-xl font-bold mb-3">Seguran�a</h3>
-                        <p class="text-gray-600">Todos os motoristas s�o verificados. Compartilhe seu trajeto com amigos e tenha suporte 24/7 dispon�vel.</p>
+                        <h3 class="text-xl font-bold mb-3">Segurança</h3>
+                        <p class="text-gray-600">Todos os motoristas são verificados. Compartilhe seu trajeto com amigos e tenha suporte 24/7 disponível.</p>
                     </div>
                     <div class="bg-gray-50 p-8 rounded-xl shadow-light transition-transform hover:scale-105">
                         <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-6">
                             <i class="fas fa-wallet text-purple-500 text-2xl"></i>
                         </div>
-                        <h3 class="text-xl font-bold mb-3">Pre�o Justo</h3>
-                        <p class="text-gray-600">Pagamento transparente com tarifa fixa antes da viagem. Sem cobran�as adicionais surpresa.</p>
+                        <h3 class="text-xl font-bold mb-3">Preço Justo</h3>
+                        <p class="text-gray-600">Pagamento transparente com tarifa fixa antes da viagem. Sem cobranças adicionais surpresa.</p>
                     </div>
                 </div>
             </div>
         </section>
-        <!-- How it Works -->
+
+        <!-- Como Funciona -->
         <section id="como-funciona" class="py-16 bg-gray-100">
             <div class="container mx-auto px-4">
                 <h2 class="text-3xl font-bold text-center mb-16">Como funciona?</h2>
@@ -151,7 +125,7 @@
                             <div class="absolute -top-2 -right-2 bg-yellow-400 text-white rounded-full w-8 h-8 flex items-center justify-center">1</div>
                         </div>
                         <h3 class="text-xl font-bold mb-2">Informe seu destino</h3>
-                        <p class="text-gray-600 max-w-xs">Digite seu destino no aplicativo e veja o pre�o estimado</p>
+                        <p class="text-gray-600 max-w-xs">Digite seu destino no aplicativo e veja o preço estimado</p>
                     </div>
                     <div class="mb-10 md:mb-0 text-center">
                         <div class="relative inline-block mb-6">
@@ -161,7 +135,7 @@
                             <div class="absolute -top-2 -right-2 bg-yellow-400 text-white rounded-full w-8 h-8 flex items-center justify-center">2</div>
                         </div>
                         <h3 class="text-xl font-bold mb-2">Escolha seu motorista</h3>
-                        <p class="text-gray-600 max-w-xs">Veja os motoristas dispon�veis e escolha quem atende melhor</p>
+                        <p class="text-gray-600 max-w-xs">Veja os motoristas disponíveis e escolha quem atende melhor</p>
                     </div>
                     <div class="mb-10 md:mb-0 text-center">
                         <div class="relative inline-block mb-6">
@@ -171,11 +145,12 @@
                             <div class="absolute -top-2 -right-2 bg-yellow-400 text-white rounded-full w-8 h-8 flex items-center justify-center">3</div>
                         </div>
                         <h3 class="text-xl font-bold mb-2">Chegue ao destino</h3>
-                        <p class="text-gray-600 max-w-xs">Sente e relaxe enquanto o motorista leva voc� com seguran�a</p>
+                        <p class="text-gray-600 max-w-xs">Sente e relaxe enquanto o motorista leva você com segurança</p>
                     </div>
                 </div>
             </div>
         </section>
+
         <!-- Forms Section -->
         <section class="py-16 bg-white" id="forms">
             <div class="container mx-auto px-4">
@@ -184,10 +159,10 @@
                     <div class="md:flex">
                         <div class="passenger-gradient md:w-1/3 rounded-tl-2xl rounded-tr-2xl md:rounded-tr-none md:rounded-bl-2xl p-10 text-white">
                             <h2 class="text-2xl font-bold mb-3">Cadastro de Passageiro</h2>
-                            <p class="mb-6">Fa�a parte da maior comunidade de transporte sob demanda do Brasil.</p>
+                            <p class="mb-6">Faça parte da maior comunidade de transporte sob demanda do Brasil.</p>
                             <ul class="space-y-3">
-                                <li class="flex items-start"><i class="fas fa-check-circle mt-1 mr-2"></i> <span>Viagens r�pidas</span></li>
-                                <li class="flex items-start"><i class="fas fa-check-circle mt-1 mr-2"></i> <span>Previsibilidade de pre�os</span></li>
+                                <li class="flex items-start"><i class="fas fa-check-circle mt-1 mr-2"></i> <span>Viagens rápidas</span></li>
+                                <li class="flex items-start"><i class="fas fa-check-circle mt-1 mr-2"></i> <span>Previsibilidade de preços</span></li>
                                 <li class="flex items-start"><i class="fas fa-check-circle mt-1 mr-2"></i> <span>Motoristas verificados</span></li>
                                 <li class="flex items-start"><i class="fas fa-check-circle mt-1 mr-2"></i> <span>Pagamento seguro</span></li>
                             </ul>
@@ -220,16 +195,16 @@
                                 <div class="grid md:grid-cols-2 gap-6">
                                     <div>
                                         <label class="block text-gray-700 mb-2" for="passenger-password">Senha</label>
-                                        <input type="password" id="passenger-password" class="input-effect w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300" placeholder="��������">
+                                        <input type="password" id="passenger-password" class="input-effect w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300" placeholder="••••••••">
                                     </div>
                                     <div>
                                         <label class="block text-gray-700 mb-2" for="passenger-confirm">Confirmar senha</label>
-                                        <input type="password" id="passenger-confirm" class="input-effect w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300" placeholder="��������">
+                                        <input type="password" id="passenger-confirm" class="input-effect w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300" placeholder="••••••••">
                                     </div>
                                 </div>
                                 <div class="flex items-start mt-6">
                                     <input type="checkbox" id="terms" class="mt-1 mr-3">
-                                    <label for="terms" class="text-gray-600">Li e concordo com os <a href="#" class="text-blue-500 hover:underline">Termos de Uso</a> e <a href="#" class="text-blue-500 hover:underline">Pol�tica de Privacidade</a>.</label>
+                                    <label for="terms" class="text-gray-600">Li e concordo com os <a href="#" class="text-blue-500 hover:underline">Termos de Uso</a> e <a href="#" class="text-blue-500 hover:underline">Política de Privacidade</a>.</label> 
                                 </div>
                                 <button type="submit" class="passenger-gradient w-full text-white font-bold py-3 px-4 rounded-lg hover:opacity-90 transition duration-300">
                                     Criar conta de passageiro
@@ -238,14 +213,15 @@
                         </div>
                     </div>
                 </div>
+
                 <!-- Driver Signup -->
                 <div id="driver-signup" class="bg-white rounded-2xl shadow-lg max-w-4xl mx-auto hidden">
                     <div class="md:flex">
                         <div class="driver-gradient md:w-1/3 rounded-tl-2xl rounded-tr-2xl md:rounded-tr-none md:rounded-bl-2xl p-10 text-white">
                             <h2 class="text-2xl font-bold mb-3">Cadastro de Motorista</h2>
-                            <p class="mb-6">Torne-se um motorista parceiro e tenha flexibilidade de hor�rios e �timos ganhos.</p>
+                            <p class="mb-6">Torne-se um motorista parceiro e tenha flexibilidade de horários e ótimos ganhos.</p>
                             <ul class="space-y-3">
-                                <li class="flex items-start"><i class="fas fa-check-circle mt-1 mr-2"></i> <span>Flexibilidade de hor�rios</span></li>
+                                <li class="flex items-start"><i class="fas fa-check-circle mt-1 mr-2"></i> <span>Flexibilidade de horários</span></li>
                                 <li class="flex items-start"><i class="fas fa-check-circle mt-1 mr-2"></i> <span>Ganhos competitivos</span></li>
                                 <li class="flex items-start"><i class="fas fa-check-circle mt-1 mr-2"></i> <span>Pagamentos semanais</span></li>
                                 <li class="flex items-start"><i class="fas fa-check-circle mt-1 mr-2"></i> <span>Suporte 24 horas</span></li>
@@ -278,7 +254,7 @@
                                 </div>
                                 <div class="grid md:grid-cols-2 gap-6">
                                     <div>
-                                        <label class="block text-gray-700 mb-2" for="driver-car-model">Modelo do ve�culo</label>
+                                        <label class="block text-gray-700 mb-2" for="driver-car-model">Modelo do veículo</label>
                                         <input type="text" id="driver-car-model" class="input-effect w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300" placeholder="Ex: Honda Civic">
                                     </div>
                                     <div>
@@ -289,16 +265,16 @@
                                 <div class="grid md:grid-cols-2 gap-6">
                                     <div>
                                         <label class="block text-gray-700 mb-2" for="driver-password">Senha</label>
-                                        <input type="password" id="driver-password" class="input-effect w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300" placeholder="��������">
+                                        <input type="password" id="driver-password" class="input-effect w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300" placeholder="••••••••">
                                     </div>
                                     <div>
                                         <label class="block text-gray-700 mb-2" for="driver-confirm">Confirmar senha</label>
-                                        <input type="password" id="driver-confirm" class="input-effect w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300" placeholder="��������">
+                                        <input type="password" id="driver-confirm" class="input-effect w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300" placeholder="••••••••">
                                     </div>
                                 </div>
                                 <div class="flex items-start mt-6">
                                     <input type="checkbox" id="driver-terms" class="mt-1 mr-3">
-                                    <label for="driver-terms" class="text-gray-600">Li e concordo com os <a href="#" class="text-blue-500 hover:underline">Termos de Uso</a> e <a href="#" class="text-blue-500 hover:underline">Pol�tica de Privacidade</a>. Declaro que possuo habilita��o e documentos do ve�culo em dia.</label>
+                                    <label for="driver-terms" class="text-gray-600">Li e concordo com os <a href="#" class="text-blue-500 hover:underline">Termos de Uso</a> e <a href="#" class="text-blue-500 hover:underline">Política de Privacidade</a>. Declaro que possuo habilitação e documentos do veículo em dia.</label>
                                 </div>
                                 <button type="submit" class="driver-gradient w-full text-white font-bold py-3 px-4 rounded-lg hover:opacity-90 transition duration-300">
                                     Cadastrar como motorista
@@ -309,23 +285,24 @@
                 </div>
             </div>
         </section>
+
         <!-- App Download -->
         <section class="py-16 bg-gradient-to-r from-blue-500 to-purple-600 text-white">
             <div class="container mx-auto px-4 text-center">
                 <h2 class="text-3xl font-bold mb-3">Baixe o aplicativo agora mesmo!</h2>
-                <p class="max-w-2xl mx-auto mb-10 text-lg">Dispon�vel para iOS e Android. Experimente gr�tis por 30 dias como motorista ou com R$50 em cr�dito como passageiro.</p>
+                <p class="max-w-2xl mx-auto mb-10 text-lg">Disponível para iOS e Android. Experimente grátis por 30 dias como motorista ou com R$50 em crédito como passageiro.</p>
                 <div class="flex justify-center space-x-6">
                     <a href="#" class="bg-black hover:bg-gray-900 px-6 py-3 rounded-lg flex items-center transition">
                         <i class="fab fa-apple text-2xl mr-3"></i>
                         <div class="text-left">
-                            <span class="text-xs block">Dispon�vel na</span>
+                            <span class="text-xs block">Disponível na</span>
                             <span class="font-bold">App Store</span>
                         </div>
                     </a>
                     <a href="#" class="bg-black hover:bg-gray-900 px-6 py-3 rounded-lg flex items-center transition">
                         <i class="fab fa-google-play text-xl mr-3"></i>
                         <div class="text-left">
-                            <span class="text-xs block">Dispon�vel no</span>
+                            <span class="text-xs block">Disponível no</span>
                             <span class="font-bold">Google Play</span>
                         </div>
                     </a>
@@ -333,6 +310,7 @@
             </div>
         </section>
     </main>
+
     <footer class="bg-gray-900 text-white py-10">
         <div class="container mx-auto px-4">
             <div class="grid md:grid-cols-4 gap-8">
@@ -343,11 +321,11 @@
                     <p class="text-gray-400">Aplicativo de transporte sob demanda que conecta passageiros e motoristas de forma simples e segura.</p>
                 </div>
                 <div>
-                    <h4 class="font-bold mb-4">Links r�pidos</h4>
+                    <h4 class="font-bold mb-4">Links rápidos</h4>
                     <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">In�cio</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Sobre n�s</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Servi�os</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Início</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Sobre nós</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Serviços</a></li>
                         <li><a href="#" class="text-gray-400 hover:text-white transition">Carreiras</a></li>
                         <li><a href="#" class="text-gray-400 hover:text-white transition">Contato</a></li>
                     </ul>
@@ -365,8 +343,8 @@
                 <div>
                     <h4 class="font-bold mb-4">Contato</h4>
                     <ul class="space-y-2 text-gray-400">
-                        <li class="flex items-center"><i class="fas fa-map-marker-alt mr-3"></i> Rua São Nicolau, 208</li>
-                        <li class="flex items-center"><i class="fas fa-phone mr-3"></i> (82) 98214-28385</li>
+                        <li class="flex items-center"><i class="fas fa-map-marker-alt mr-3"></i> Av. Paulista, 1000</li>
+                        <li class="flex items-center"><i class="fas fa-phone mr-3"></i> (11) 4000-2000</li>
                         <li class="flex items-center"><i class="fas fa-envelope mr-3"></i> contato@mydriver.com</li>
                     </ul>
                     <div class="flex space-x-4 mt-4">
@@ -383,15 +361,109 @@
                 </div>
             </div>
             <div class="border-t border-gray-800 mt-10 pt-6 flex flex-col md:flex-row justify-between items-center">
-                <p class="text-gray-400 text-sm">&copy; 2025 My Driver. Todos os direitos reservados.</p>
+                <p class="text-gray-400 text-sm">&copy; 2023 MyDriver. Todos os direitos reservados.</p>
                 <div class="flex space-x-6 mt-4 md:mt-0">
                     <a href="#" class="text-gray-400 hover:text-white text-sm">Termos de Uso</a>
-                    <a href="#" class="text-gray-400 hover:text-white text-sm">Pol�tica de Privacidade</a>
+                    <a href="#" class="text-gray-400 hover:text-white text-sm">Política de Privacidade</a>
                     <a href="#" class="text-gray-400 hover:text-white text-sm">Cookies</a>
                 </div>
             </div>
         </div>
     </footer>
+
     <script src="js/main.js"></script>
 </body>
 </html>
+'@
+
+# Salva index.html
+Set-Content -Path "$projectPath\index.html" -Value $htmlContent
+Write-Host "✅ Arquivo index.html criado com sucesso!" -ForegroundColor Green
+
+# === Conteúdo CSS ===
+$cssContent = @'
+.gradient-bg {
+    background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+}
+.passenger-gradient {
+    background: linear-gradient(135deg, #1a2a6c, #0072ff);
+}
+.driver-gradient {
+    background: linear-gradient(135deg, #b21f1f, #ff416c);
+}
+.shadow-light {
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+.animate-bounce-slow {
+    animation: bounce-slow 3s infinite;
+}
+@keyframes bounce-slow {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+.slide-in {
+    animation: slideIn 0.5s ease-out;
+}
+@keyframes slideIn {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+.input-effect:focus {
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+}
+'@
+New-Item -ItemType Directory -Path "$projectPath\css" -Force | Out-Null
+Set-Content -Path "$projectPath\css\styles.css" -Value $cssContent
+Write-Host "✅ Arquivo styles.css criado" -ForegroundColor Green
+
+# === Conteúdo JavaScript ===
+$jsContent = @'
+function showPassengerSignup() {
+    document.getElementById('passenger-signup').classList.remove('hidden');
+    document.getElementById('passenger-signup').classList.add('block');
+    document.getElementById('driver-signup').classList.add('hidden');
+    document.getElementById('forms').scrollIntoView({ behavior: 'smooth' });
+}
+
+function showDriverSignup() {
+    document.getElementById('driver-signup').classList.remove('hidden');
+    document.getElementById('driver-signup').classList.add('block');
+    document.getElementById('passenger-signup').classList.add('hidden');
+    document.getElementById('forms').scrollIntoView({ behavior: 'smooth' });
+}
+
+function closeSignup() {
+    document.getElementById('passenger-signup').classList.add('hidden');
+    document.getElementById('driver-signup').classList.add('hidden');
+}
+'@
+New-Item -ItemType Directory -Path "$projectPath\js" -Force | Out-Null
+Set-Content -Path "$projectPath\js\main.js" -Value $jsContent
+Write-Host "✅ Arquivo main.js criado" -ForegroundColor Green
+
+# === .gitignore ===
+Set-Content -Path "$projectPath\.gitignore" -Value @'
+node_modules/
+.DS_Store
+.env
+'@
+Write-Host "✅ Arquivo .gitignore criado" -ForegroundColor Green
+
+# === README.md ===
+Set-Content -Path "$projectPath\README.md" -Value @'
+# MyDriver - Aplicativo de Transporte Sob Demanda
+
+Este é o site institucional do aplicativo **MyDriver**, estilo Uber, onde usuários podem se cadastrar como passageiros ou motoristas.
+
+## Tecnologias usadas
+- HTML5
+- TailwindCSS CDN
+- Font Awesome CDN
+- JavaScript puro
+- Hospedagem no Vercel
+
+## Como rodar localmente
+
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/Phellipes/mydriver.git 
