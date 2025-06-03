@@ -1,9 +1,4 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "index.html",
-      "use": "@vercel/static-build"
-    }
-  ]
+  "name": "mydriver",
+  "version": "1.0.0"
 }

@@ -1,6 +1,6 @@
 # MyDriver - Aplicativo de Transporte Sob Demanda
 
-Este � o site institucional do aplicativo **MyDriver**, estilo Uber, onde usu�rios podem se cadastrar como passageiros ou motoristas.
+Este é o site institucional do aplicativo **MyDriver**, estilo Uber, onde usuários podem se cadastrar como passageiros ou motoristas.
 
 ## Tecnologias usadas
 - HTML5
